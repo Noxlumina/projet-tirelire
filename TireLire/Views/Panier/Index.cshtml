@@ -1,0 +1,85 @@
+﻿@model TireLire.Models.Commande
+@using TireLire.Models
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<h2>Mon panier</h2>
+
+<script>
+
+    $(function () { majTotal(); })
+
+    function majTotal() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("calculerTotal", "Panier")',
+            success: function (data) {
+                $('#total').html(data);
+            }
+        });
+    }
+        $(function () { majPoids(); })
+
+    function majPoids() {
+        $.ajax({
+        type: "GET",
+            url: '@Url.Action("calculerPoids", "Panier")',
+            success: function (data) {
+            $('#poids').html(data);
+        }
+    });
+
+    }
+</script>
+<div class="container table-responsive">
+    <table class="table table-bordered table-dark table-striped table-hover">
+        <tr class="text-center">
+            <th class=" text-center ">Suppression</th>
+            <th class=" text-center">Produit</th>
+            <th class=" text-center">Fournisseur</th>
+            <th class=" text-center">Prix</th>
+            <th class=" text-center">Quantité | Montant</th>
+            <th class=" text-center">Ajouter un produit</th>
+            <th class=" text-center">Retirer un produit</th>
+        </tr>
+        @foreach (var detail in Model.Produit_Commandé)
+        {
+            <tr id="@("r"+detail.IdProduit)" class="text-center">
+                <td class="text-center">@Ajax.ActionLink(" ", "Supprimer", new { id = detail.IdProduit }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "majTotal", InsertionMode = InsertionMode.Replace, UpdateTargetId = "r" + detail.IdProduit }, new { @class = "fas fa-trash" })</td>
+                <td class="text-center">@detail.Produit.Nom_Produit</td>
+                <td class="text-center">@detail.Produit.Fournisseur.Nom</td>
+                <td class="text-center" id="@("p" + detail.IdProduit)">@detail.Produit.Prix_Unitaire</td>
+                <td class=" text-center" id="@("q" + detail.IdProduit)"><span>@detail.Nb_Produit_Commandé     |    @(detail.Produit.Prix_Unitaire * detail.Nb_Produit_Commandé) </span></td>
+                <td class="text-center">@Ajax.ActionLink(" ", "Incrementer", new { id = detail.IdProduit }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "majTotal", InsertionMode = InsertionMode.Replace, UpdateTargetId = "q" + detail.IdProduit }, new { @class = "far fa-plus-square" })</td>
+                <td class="text-center">@Ajax.ActionLink(" ", "Decrementer", new { id = detail.IdProduit }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "majTotal", InsertionMode = InsertionMode.Replace, UpdateTargetId = "q" + detail.IdProduit }, new { @class = "far fa-minus-square" })</td>
+            </tr>
+
+        }
+
+
+    </table>
+    <br />
+    <table class="table col-sm-1 text-center table-bordered table-dark table-striped">
+        <tr>
+            <th>
+                <div>Total</div>
+            </th>  
+        </tr>
+        <tr>
+            <td>
+                <div id="total" class="text-right"></div>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div>
+        <input type="button" class="btn btn-outline-success" value="Passer commande"
+               onclick="location.href='@Url.Action("Confirmation", "Commande")'" />
+    </div>
+    <br />
+
+    <p>
+        @Html.ActionLink("Retour à la galerie", "Galerie", "Produit", "Produit", new { style = "color:darkgreen", @class = "text-decoration-none" })
+    </p>

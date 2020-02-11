@@ -1,0 +1,84 @@
+﻿@model TireLire.Models.Client
+
+@{
+    ViewBag.Title = "React.Client";
+}
+
+
+
+<h3>Réactivation du client</h3>
+<div>
+    <h4>Voulez-vous vraiment réactiver ce client?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdClient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdClient)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prénom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prénom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pays)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Réactiver" class="btn btn-outline-danger" />
+        </div>
+        <div>
+            <br />
+            @Html.ActionLink("Retour au listing des clients", "Index", "", new { style = "color:darkgreen;", @class = "text-decoration-none" })
+        </div>
+    }
+</div>

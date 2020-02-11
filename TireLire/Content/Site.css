@@ -1,0 +1,148 @@
+﻿body {
+    padding-top: 10em;
+    padding-bottom: 1em;
+    width: auto;
+    margin: auto;
+    font-family: cursive;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 5em;
+    padding-right: 5em;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.bloc {
+    display: inline-block;
+}
+
+
+
+.navbar-brand {
+    float: left;
+}
+
+.navbar-inverse {
+    background-color: #00ffff;
+    border-color: #000000;
+    border-style: ridge;
+    text-decoration:wavy;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #0026ff;
+        text-decoration: none;
+    }
+
+        .navbar-inverse .navbar-brand:hover,
+        .navbar-inverse .navbar-brand:focus {
+            color: darkblue;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+    .navbar-inverse .navbar-text {
+        color: #fff;
+        background-color: transparent;
+        padding-right: 1em;
+        padding-left: 1em;
+        text-decoration: none;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #fff;
+        font-family: cursive;
+        font-size: 1em;
+        background-color: transparent;
+        padding-right: 1em;
+        text-decoration: none;
+        text-align: center;
+    }
+
+        .navbar-inverse .navbar-nav > li > a:hover,
+        .navbar-inverse .navbar-nav > li > a:focus {
+            color: darkblue;
+            
+        }
+
+.carousel-item img {
+    width: auto;
+    height: 245px;
+    max-height: 245px;
+    margin: auto;
+    display: block;
+}
+
+
+#myImg {
+    border-radius: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    #myImg:hover {
+        opacity: 0.2;
+    }
+
+    .myCard:hover {
+        opacity: 0.2;
+    }
+
+
+.modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+-webkit-keyframes zoom {
+    from
+    -webkit-transform: scale(0)
+}
+
+to {
+    -webkit-transform: scale(1)
+}
+
+}
+
+keyframes zoom {
+    from
+{
+    transform: scale(0)
+}
+
+to {
+    transform: scale(1)
+}
+
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content         {
+    width:15em;
+    height:15em;
+}
+
+.navbar-header {
+}

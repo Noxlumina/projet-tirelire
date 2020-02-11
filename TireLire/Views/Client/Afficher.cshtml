@@ -1,0 +1,81 @@
+﻿@model TireLire.Models.Client
+
+@{
+    ViewBag.Title = "MonProfile";
+}
+
+
+    <div class="container">
+        <h4>
+Mon Profile        
+        </h4>
+        <hr />
+        <dl class="dl-horizontal">
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Prénom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Prénom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Téléphone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Téléphone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Adresse)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Adresse)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Ville)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ville)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Pays)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Pays)
+            </dd>
+        </dl>
+    </div>
+
+
+    <div>
+        <button class="btn-warning " onclick="location.href='@Url.Action("Edit", new { id = Model.IdClient })'">Editer</button>
+
+        @Html.ActionLink("Retour à la page d'acceuil", "Index", "", "Home", new { style = "color:darkgreen;", @class = "text-decoration-none" })
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

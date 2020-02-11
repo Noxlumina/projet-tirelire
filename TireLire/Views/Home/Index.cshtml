@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="container">
+    <div class="justify-content-center">
+        <div id="carouselIntro" class="carousel slide" data-ride="carousel" data-wrap="true" data-interval="3000">
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active ">
+                    <img class="d-block img-fluid " src="~/Content/images/2_ananas.jpg" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block img-fluid " src="~/Content/images/3_hippo.jpg" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block img-fluid " src="~/Content/images/4_coccinelle.png" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block img-fluid " src="~/Content/images/5_cochon.jpg" alt="Fourth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block img-fluid " src="~/Content/images/6_carrosse.jpg" alt="Fourth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block img-fluid " src="~/Content/images/7_grenouille.jpg" alt="Fourth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block img-fluid " src="~/Content/images/8_ballon.png" alt="Fourth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block img-fluid " src="~/Content/images/9_casino.jpg" alt="Fourth slide">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Accéder à la gallerie des Tirelires</h2>
+            <p>
+            </p>
+            <div class="col-md-offset-4">
+                <p><a class="btn btn-warning" href="~/Produit/Galerie">Gallerie &raquo;</a></p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2>Accéder au choix de la catégorie</h2>
+            <p></p>
+            <div class="col-md-offset-4">
+                <p><a class="btn btn-warning" href="~/Categorie/GalerieCat">Catégorie &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Scripts")
+    @Scripts.Render("~/Scripts")
+}
+
+
+
+
+

@@ -1,0 +1,231 @@
+﻿@model TireLire.Models.Produit
+
+@{
+    ViewBag.Title = "Details.Produit";
+}
+
+
+<div>
+    <div class="container">
+        <h4>Détail du Produit</h4>
+        <hr />
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#Info">Infos produit</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#Caractéristique">Caractéristique</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#Fournisseur">Fournisseur</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#Avis">Commentaire</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="Info" class="container tab-pane active">
+                <br>
+
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ImageUrl)
+                    </dt>
+
+                    <dd>
+                        <div id="photo" class="bloc btn" data-toggle="modal" data-target="#myModal">
+                            <img id="myImg" class="img-thumbnail img-fluid" style="width:5em;height:5em;max-width:10em" src="@Url.Content("~/Images/" + @Html.DisplayFor(model => model.IdProduit) + "_" + @Html.DisplayFor(model => model.ImageUrl))" />
+                        </div>
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="width:12em;height:16em">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body" style="width:10em;height:10em">
+
+                                        <img src="@Url.Content("~/Images/" + Model.IdProduit + "_" + Model.ImageUrl)"
+                                             style="position:center;width:10em;height:10em" />
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nom_Produit)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Nom_Produit)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Prix_Unitaire)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Prix_Unitaire)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Stock)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Stock)
+                    </dd>
+
+                </dl>
+
+            </div>
+            <div id="Caractéristique" class="container tab-pane fade">
+                <br>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Poids)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Poids)
+                    </dd>
+
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Longueur)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Longueur)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Largeur)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Largeur)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Hauteur)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Hauteur)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Capacité)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Capacité)
+                    </dd>
+                </dl>
+
+            </div>
+            <div id="Fournisseur" class="container tab-pane fade">
+                <br>
+                <dl class="dl-horizontal">
+
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Catégorie.Description)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Catégorie.Description)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Fournisseur.Nom)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Fournisseur.Nom)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Statut)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Statut)
+                    </dd>
+                </dl>
+            </div>
+            <div id="Avis" class="container tab-pane fade">
+                <br>
+                <dl class="dl-horizontal">
+                    @if (Model.Commentaires.Count() > 0 )
+                    { 
+
+                        <h5>Quelques avis...</h5>
+                        <br />
+                        <table class="table-bordered" >
+
+                            <th>Déposé par :</th>
+                            <th>Commentaire</th>
+                            <th class="5em">Note (/5)</th>
+                            <th>Date</th>
+
+
+                            @foreach (TireLire.Models.Commentaire item in Model.Commentaires)
+                            {  if (item.Etat == 2)
+                                {
+                                <tr>
+
+                                    <td class="text-center">@item.Client.Nom</td>
+                                    <td class="text-center">@item.Commentaire1</td>
+                                    <td class="text-center">@item.Note</td>
+                                    <td class="text-center">@item.Date_Avis</td>
+
+
+                                </tr>
+                                }
+                            }
+
+
+                        </table>
+                        <br />
+                        <br />
+                    }
+                </dl>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        <button class="btn-primary  " onclick="location.href='@Url.Action("Ajouter", "Panier",new {id=Model.IdProduit })'">Ajouter au panier</button>
+    </div>
+</div>
+
+
+<p>
+    @if (User.IsInRole("Admin"))
+    {<button class="btn-warning " onclick="location.href='@Url.Action("Edit", new { id = Model.IdProduit })'">Editer</button>
+    }
+    @*<button class="btn-warning " onclick="location.href='@Url.Action("Edit", new { id = Model.IdProduit })'">Editer</button>*@
+    @if (User.IsInRole("Admin"))
+    { @Html.ActionLink("Retour au listing des produits", "Index", "", new { style = "color:darkgreen;", @class = "text-decoration-none" })}
+</p>
+<p>
+    <button class="btn-link text-decoration-none" onclick="location.href='@Url.Action("Galerie")'">Vers la galerie...</button>
+</p>
+

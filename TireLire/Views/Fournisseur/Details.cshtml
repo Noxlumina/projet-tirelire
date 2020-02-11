@@ -1,0 +1,43 @@
+﻿@model TireLire.Models.Fournisseur
+
+@{
+    ViewBag.Title = "Details.Fournisseur";
+}
+
+<div>
+    <h4>Détail du Fournisseur</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayTextFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button class="btn-warning" onclick="location.href='@Url.Action("Edit", new { id = Model.IdFournisseur })'">Editer</button>
+    @Html.ActionLink("Retour au listing des fournisseur", "Index", "", new { style = "color:darkgreen;", @class="text-decoration-none"})
+</p>
+

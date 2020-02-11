@@ -1,0 +1,51 @@
+﻿@model TireLire.Models.Commentaire
+
+@{
+    ViewBag.Title = "Suppr.Commentaire";
+}
+
+
+<h3>Supression du commentaire</h3>
+
+<div>
+    <h4>Voulez-vous vraiment supprimer ce commentaire?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Produit.Nom_Produit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Produit.Nom_Produit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentaire1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commentaire1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-outline-danger" />
+        </div>
+        <div>
+            <br />
+            @Html.ActionLink("Retour au listing des commentaires", "Index", "", new { style = "color:darkgreen;", @class = "text-decoration-none" })
+        </div>
+    }

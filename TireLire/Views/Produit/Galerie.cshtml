@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TireLire.Models.Produit>
+
+@{
+    ViewBag.Title = "Galerie";
+}
+
+
+
+<div class="container mt-3">
+    <h2>Galerie des produits</h2>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    </div>
+
+    <hr />
+
+
+    <div id="myDIV" class="w3-row-padding w3-margin-top">
+
+        @foreach (var item in Model)
+        {
+
+            <div style="display:inline-block;margin-bottom:5em;margin-right:auto;margin-left:auto" class="w3-third">
+
+                <div class="w3-card myCard" style="width:200px;height:150px" onclick="location.href='Details/@item.IdProduit'">
+                    <div style="display:inline-block;background-color:slategrey;color:aliceblue;width:100%;height:3em;" class="card-body text-center align-items-center">
+                        <a>@Html.DisplayFor(modelItem => item.Nom_Produit)</a>
+                        <a>@Html.DisplayFor(modelItem => item.Prix_Unitaire)</a>
+                    </div>
+                    <img class="card-img-top mx-auto d-block" src="@Url.Content("~/Images/" + item.IdProduit + "_" + item.ImageUrl)" alt="Card image" style="width:100%;height:100%">
+                </div>
+            </div>
+
+
+        }
+        <div>
+            @Html.Action("_Topp","Produit")
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myDIV *").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+  
+

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TireLire.Models.AdresseClient">
+    <Position X="12.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAACAAAAAAAAAEAAAAAAAAAAARAAAAAw=</HashCode>
+      <FileName>Models\AdresseClient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Client" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TireLire.Models.Catégorie">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAQ=</HashCode>
+      <FileName>Models\Catégorie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TireLire.Models.Client">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAEACAAAAAAEAAAAAAAACAAAAAAACAABAAAIgA=</HashCode>
+      <FileName>Models\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TireLire.Models.Commande">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAACEAACAAQAAAAAAAAAAAAAAQAAAgAgABAAAAAQ=</HashCode>
+      <FileName>Models\Commande.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Client" />
+      <Property Name="Facture" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TireLire.Models.Commentaire">
+    <Position X="3" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACABAAAAAAAAAAAAAAAAAAAAAAEAAAAAAABAEAhAY=</HashCode>
+      <FileName>Models\Commentaire.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Client" />
+      <Property Name="Produit" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TireLire.Models.Facture">
+    <Position X="10.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAQAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\Facture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TireLire.Models.Fournisseur">
+    <Position X="1.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAAAACAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Fournisseur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TireLire.Models.Produit">
+    <Position X="4.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAEAABAkBAAoAAYAAAAAAAAAgIAAAAASAAABQBAABQA=</HashCode>
+      <FileName>Models\Produit.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Catégorie" />
+      <Property Name="Fournisseur" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TireLire.Models.Produit_Commandé">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAACAAAAAAAAAAAAAAAAEAAAAAQAAAAAAAAAAJAA=</HashCode>
+      <FileName>Models\Produit_Commandé.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Commande" />
+      <Property Name="Produit" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

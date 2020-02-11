@@ -1,0 +1,62 @@
+﻿@model IEnumerable<TireLire.Models.Commentaire>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Produit.Nom_Produit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_Avis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commentaire1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Etat)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produit.Nom_Produit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Avis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commentaire1)
+            </td>
+            <td id="@(item.IdCommentaire)etat">
+                @(((TireLire.Outils.EtatsAvis)item.Etat).ToString())
+            </td>
+            <td>
+                @Ajax.ActionLink("Approuver", "Approuver", new { id = item.IdCommentaire }, new AjaxOptions { Confirm = "Voulez-vous vraiment approuver cet avis?", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdCommentaire + "etat" }) |
+                @Ajax.ActionLink("Refuser", "Refuser", new { id = item.IdCommentaire }, new AjaxOptions { Confirm = "Voulez-vous vraiment refuser cet avis?", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdCommentaire + "etat" }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.IdClient }, new { @class = "text-decoration-none" })
+
+            </td>
+        </tr>
+    }
+
+</table>

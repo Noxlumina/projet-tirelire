@@ -1,0 +1,64 @@
+﻿@model TireLire.Models.Catégorie
+
+@{
+    ViewBag.Title = "Details.Catégorie";
+}
+
+<div>
+    <h4>Détail de la catégorie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageCat)
+        </dt>
+
+        <dd>
+            <div id="photo" class="bloc btn" data-toggle="modal" data-target="#myModal">
+                <img id="myImg" class="img-thumbnail img-fluid" style="width:5em;height:5em;max-width:10em" src="@Url.Content("~/Images/" + @Html.DisplayFor(model => model.IdCatégorie) + "_" + @Html.DisplayFor(model => model.ImageCat))" />
+            </div>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="width:12em;height:16em">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body" style="width:10em;height:10em">
+
+                            <img src="@Url.Content("~/Images/" + Model.IdCatégorie + "_" + Model.ImageCat)"
+                                 style="position:center;width:10em;height:10em" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_Catégorie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_Catégorie)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button class="btn-warning" onclick="location.href='@Url.Action("Edit", new { id = Model.IdCatégorie })'">Editer</button>
+    @Html.ActionLink("Retour au listing des catégories", "Index", "", new { style = "color:darkgreen;", @class="text-decoration-none" })
+</p>

@@ -1,0 +1,68 @@
+﻿@model TireLire.Models.Produit
+
+@{
+    ViewBag.Title = "Suppr.Produit";
+}
+
+
+
+<h3>Supression du produit</h3>
+<div>
+    <h4>Voulez-vous vraiment supprimer ce produit?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Catégorie.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catégorie.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fournisseur.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fournisseur.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_Produit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_Produit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prix_Unitaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prix_Unitaire)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-outline-danger" />
+        </div>
+        <div>
+            <br />
+            @Html.ActionLink("Retour au listing des produits", "Index", "", new { style = "color:darkgreen;", @class="text-decoration-none" })
+        </div>
+    }
+</div>

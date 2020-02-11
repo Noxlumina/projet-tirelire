@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNet.Identity
+@using TireLire.Models
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+
+        @Html.AntiForgeryToken()
+        <li class="btn-group nav">
+            <button type="button" class="btn navbar-btn" style="background-color:palegreen">@User.Identity.Name</button>
+            <button type="button" class="btn navbar-btn dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu" role="menu">
+                @*@if (Model.Client.UserPhoto != null)
+               { <a class="dropdown-item" href="#">
+                    <img src="@Url.Content("~/Images/" + Model.Client.Nom + "_" + Model.Client.UserPhoto)" height="48" width="48" />
+                </a>}*@
+                <a class="dropdown-item" href="#">
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Mon Compte", @class = "text-decoration-none" })
+                </a>
+                <a class="dropdown-item" href="#">
+                    @Html.ActionLink("Mon profil", "Afficher", "Client", routeValues: null, htmlAttributes: new { id = User.Identity.GetUserId(), @class = "text-decoration-none" })
+                </a>
+                <a class="dropdown-item" href="#">
+                    @Html.ActionLink("Mes commandes", "ListerCommandes", "Client", routeValues: null, htmlAttributes: new { title = "Mon Compte", @class = "text-decoration-none" })
+                </a>
+                <a class="dropdown-item" href="#">
+                    @Html.ActionLink("Paramètres", "Parametre", "Home", routeValues: null, htmlAttributes: new { @class = "text-decoration-none" })
+                </a>
+                <a class="dropdown-item" href="#">
+                    @Html.ActionLink("Changer le Mot de Passe", "ResetPassword", "Account", routeValues: null, htmlAttributes: new { id = "ProfileEdit", @class = "text-decoration-none" })
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="javascript:document.getElementById('logoutForm').submit()">Se déconnecter</a>
+            </div>
+        </li>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("S'inscrire", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>
+            @Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        </li>
+    </ul>
+}

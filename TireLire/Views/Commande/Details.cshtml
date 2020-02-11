@@ -1,0 +1,82 @@
+﻿@model TireLire.Models.Commande
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Commande</h4>
+    <hr />
+
+    <table class="table table-bordered ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Client.Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client.Prénom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date_Commande)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Client.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Client.Prénom)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Date_Commande)
+            </td>
+            <th>
+                @Html.DisplayFor(model => model.Total)
+            </th>
+        </tr>
+    </table>
+
+    <div class="container table-responsive">
+        <table class="table table-bordered table-hover ">
+
+            <tr class="text-center">
+
+                <th class=" text-center">
+                    Produit
+                </th>
+
+                <th class=" text-center">Fournisseur</th>
+                <th class=" text-center">Prix</th>
+                <th class=" text-center">Quantité</th>
+                <th class=" text-center">Montant</th>
+
+            </tr>
+            @foreach (var detail in Model.Produit_Commandé)
+            {
+                <tr class="text-center">
+                    <td>
+                        @detail.Produit.Nom_Produit                         
+                    </td>
+                    <td>@detail.Produit.Fournisseur.Nom</td>
+                    <td>@detail.Produit.Prix_Unitaire</td>
+                    <td><span>@detail.Nb_Produit_Commandé</span></td>
+                    <td><span>@(detail.Produit.Prix_Unitaire * detail.Nb_Produit_Commandé)€</span></td>
+                </tr>
+
+            }
+
+
+        </table>
+
+
+
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IdCommande }) |
+        @Html.ActionLink("Retour au listing des commandes", "Lister", "Commande", new { style = "color:darkgreen;", @class = "text-decoration-none" })
+    </p>

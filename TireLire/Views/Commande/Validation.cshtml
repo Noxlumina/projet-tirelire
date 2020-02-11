@@ -1,0 +1,21 @@
+﻿@model TireLire.Models.Commande
+
+@{
+    ViewBag.Title = "Validation";
+}
+
+<h2>Validation</h2>
+
+<div>
+    <h4>Commande</h4>
+    <hr />
+
+    @(((TireLire.Models.Client)Session["Client"]).Prénom) <span></span>
+    @(((TireLire.Models.Client)Session["Client"]).Nom), votre commande @Model.IdCommande a été validée
+    <br />
+    Nous vous remercions!
+</div>
+<p>
+    @Html.ActionLink("Retour vers la galerie", "Galerie", "Produit", new { style = "color:darkgreen;", @class = "text-decoration-none" })
+</p>
+

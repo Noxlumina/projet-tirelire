@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TireLire.Models.Commande>
+
+@{
+    ViewBag.Title = "Lister";
+}
+
+<h2>Commandes</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCommande)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_Commande)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Statut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCommande)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Commande)
+            </td>
+            <td id="@(item.IdCommande)etat">
+                @(((TireLire.Outils.EtatsCommande)item.Statut).ToString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.IdCommande }, new { @class = "text-decoration-none" }) |
+
+                @Ajax.ActionLink("Traiter", "Traiter", new { id = item.IdCommande }, new AjaxOptions { Confirm = "Voulez-vous vraiment avancer la commande?", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdCommande + "etat" }) |
+                @Ajax.ActionLink("Supprimer", "Supprimer", new { id = item.IdCommande }, new AjaxOptions { Confirm = "Voulez-vous vraiment supprimer la commande?", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdCommande + "etat" }) |
+                @Ajax.ActionLink("Suspendre", "Suspendre", new { id = item.IdCommande }, new AjaxOptions { Confirm = "Voulez-vous vraiment suspendre la commande?", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = item.IdCommande + "etat" })
+
+            </td>
+        </tr>
+    }
+
+</table>
+@{Html.RenderAction("Menu", "Navigation"); }

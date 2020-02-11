@@ -1,0 +1,72 @@
+﻿@model TireLire.Models.Commande
+
+@using TireLire.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ma commande n° @Model.IdCommande</h2>
+
+<script>
+
+    @*$(function () { majTotal(); })
+
+    function majTotal() {
+        $.ajax({
+        type: "GET",
+            url: '@Url.Action("calculerTotal", "Panier")',
+            success: function (data) {
+            $('#total').html(data);
+        }
+    });
+
+    }*@
+</script>
+<div class="container table-responsive">
+<table class="table table-bordered table-hover ">
+
+    <tr class="text-center">
+
+        <th class=" text-center">
+            Produit
+        </th>
+
+        <th class=" text-center">Fournisseur</th>
+        <th class=" text-center">Prix</th>
+        <th class=" text-center">Quantité</th>
+        <th class=" text-center">Montant</th>
+
+    </tr>
+    @foreach (var detail in Model.Produit_Commandé)
+    {
+<tr class="text-center">
+    <td>
+        @detail.Produit.Nom_Produit<a>
+        @if (detail.Produit.Commentaires.Where(a => a.IdClient == ((Client)Session["Client"]).IdClient).Count() == 0)
+        {
+            <span>@Html.ActionLink("Déposer un avis", "DeposerAvis", new { id = detail.Produit.IdProduit })</span>
+        }
+    </a>
+</td>
+
+<td>@detail.Produit.Fournisseur.Nom</td>
+<td>@detail.Produit.Prix_Unitaire</td>
+<td><span>@detail.Nb_Produit_Commandé</span></td>
+<td><span>@(detail.Produit.Prix_Unitaire * detail.Nb_Produit_Commandé)€</span></td>
+</tr>
+
+    }
+
+
+</table>
+    </div>
+<br />
+<div id="total" class="text-right">
+
+</div>
+<br />
+<br />
+
+<p>
+    @Html.ActionLink("Retour à mes commandes", "ListerCommandes", "Client", new { style = "color:darkgreen", @class = "text-decoration-none" })
+</p>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<TireLire.Models.Catégorie>
+
+@{
+    ViewBag.Title = "List.Catégorie";
+}
+
+
+
+<h2>Annuaire des catégories</h2>
+<p>
+    @Html.ActionLink("Ajouter une catégorie", "Create", "", new { style = "color:darkgreen;", @class="text-decoration-none"})
+</p>
+<input class="form-control" id="myInput" type="text" placeholder="Search..">
+<br />
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nom_Catégorie)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Statut)
+                </th>
+                <th>Image</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nom_Catégorie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Statut)
+                </td>
+                <td>
+                    <img class="img-thumbnail img-fluid" src="@Url.Content("~/Images/" + item.IdCatégorie + "_" + item.ImageCat)" style="width:4em;height:4em" />
+                </td>
+                <td>
+                    @Html.ActionLink("Editer", "Edit", new { id = item.IdCatégorie }, new { @class="text-decoration-none"}) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IdCatégorie }, new { @class="text-decoration-none"}) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.IdCatégorie }, new { @class="text-decoration-none"})
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+<div>
+    @Html.ActionLink("Vers les produits", "Index", "Produit", "Produit", new { style = "color:darkgreen;", @class="text-decoration-none"}) |
+    @Html.ActionLink("Vers les fournisseurs", "Index", "Fournisseur", "Fournisseur", new { style = "color:darkgreen;", @class="text-decoration-none"}) |
+    @Html.ActionLink("Vers la galerie", "Galerie", "Produit", "Produit", new { style = "color:darkgreen;", @class="text-decoration-none"})
+
+</div>
+
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>

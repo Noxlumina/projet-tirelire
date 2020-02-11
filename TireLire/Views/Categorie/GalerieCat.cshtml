@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TireLire.Models.Catégorie>
+@{
+    ViewBag.Title = "Caté.Choix";
+}
+
+
+<div class="container mt-3">
+    <h2>Choix de la catégorie</h2>
+</div>
+<hr />
+<div id="myDIV" class="w3-row-padding w3-margin-top">
+
+    @foreach (var item in Model)
+    {
+
+        <div style="display:inline-block;margin-bottom:5em;margin-right:auto;margin-left:auto" class="w3-third">
+
+            <div class="card myCard" style="width:20em;height:25em" onclick="location.pathname='Produit/ProduitCat/@item.IdCatégorie'">
+                <img class="card-img-top mx-auto d-block" style="width:20em;height:25em;opacity:0.7" src="@Url.Content("~/Images/" + item.IdCatégorie + "_" + item.ImageCat)" alt="Card image">
+                <div class="card-img-overlay text-center align-items-center">
+                    <h4 class="card-title" style="color:red;font-size:xx-large;font:800px">@Html.DisplayFor(modelItem => item.Nom_Catégorie)</h4>
+                    <p class="card-text" style="color:black;font-size:x-large">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <button class="btn btn-outline-dark disabled">Aller</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+﻿@model TireLire.Models.Catégorie
+
+@{
+    ViewBag.Title = "Edit.Catégorie";
+}
+
+
+
+@using (Html.BeginForm("Edit", "Categorie", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ImageCat)
+
+
+    <div class="form-horizontal">
+        <h4>Modification de la catégorie</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IdCatégorie)
+
+        <div class="form-group">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImageCat, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <img alt="test" class="img-thumbnail img-fluid" style="width:5em;height:5em;max-width:10em" src="@Url.Content("~/Images/" + @Html.DisplayFor(model => model.IdCatégorie) + "_" + @Html.DisplayFor(model => model.ImageCat))" />
+                </div>
+                <br />
+                <div class="col-md-10">
+                    <input type="file" id="fichier" name="fichier" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nom_Catégorie, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Nom_Catégorie, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nom_Catégorie, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Description, new { placeholder = "Description", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Statut, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Statut, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Statut, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Modifier" class="btn btn-outline-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Retour au listing des catégories", "Index", "", new { style = "color:darkgreen;", @class="text-decoration-none" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<TireLire.Models.Produit>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<h2>Liste des produits</h2>
+
+<p>
+    @Html.ActionLink("+ Ajouter un produit", "Create", "", new { style = "color:darkgreen;", @class="text-decoration-none"})
+</p>
+<input class="form-control" id="myInput" type="text" placeholder="Search..">
+<br />
+<div class="table-responsive">
+    <table class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Catégorie.Nom_Catégorie)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fournisseur.Nom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nom_Produit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Prix_Unitaire)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Statut)
+                </th>
+                <th>Image</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Catégorie.Nom_Catégorie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fournisseur.Nom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nom_Produit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Prix_Unitaire)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Statut)
+                    </td>
+                    <td>
+                        <img class="img-thumbnail img-fluid" src="@Url.Content("~/Images/" + item.IdProduit + "_" + item.ImageUrl)" style="width:4em;height:4em" />
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editer", "Edit", new { id = item.IdProduit }, new { @class = "text-decoration-none" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.IdProduit }, new { @class = "text-decoration-none" }) |
+                        @Html.ActionLink("Supprimer", "Delete", new { id = item.IdProduit }, new { @class = "text-decoration-none" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Vers les catégories", "Index", "Categorie", "Categorie", new { style = "color:darkgreen;", @class="text-decoration-none"}) |
+    @Html.ActionLink("Vers les fournisseurs", "Index", "Fournisseur", "Fournisseur", new { style = "color:darkgreen;", @class="text-decoration-none"}) |
+    @Html.ActionLink("Vers la galerie", "Galerie", "Produit", "Produit", new { style = "color:darkgreen;", @class="text-decoration-none"})
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")}
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

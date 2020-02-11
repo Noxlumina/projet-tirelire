@@ -1,0 +1,23 @@
+﻿<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<ul class="navbar-nav text-center">
+    @*<li class="nav-item text-center">@Html.ActionLink("Accueil", "Index", "Home")</li>*@
+    <li class="nav-item text-center">@Html.ActionLink("Galerie de produits", "Galerie", "Produit")</li>
+    <li class="nav-item text-center">@Html.ActionLink("Mes commandes", "ListerCommandes", "Client")</li>
+    <li class="nav-item text-center ">@Html.ActionLink("Mon Panier", "Index", "Panier")</li>
+
+    @if (((string[])ViewBag.Roles).Contains("Admin"))
+    {
+        <li class="nav-item text-center">@Html.ActionLink("Gestion des produits", "Index", "Produit")</li>
+        <li class="nav-item text-center">@Html.ActionLink("Gestion des commandes", "Lister", "Commande")</li>
+        <li class="nav-item text-center">@Html.ActionLink("Gestion des clients", "Index", "Client")</li>
+    }
+
+    @if (((string[])ViewBag.Roles).Contains("Mod"))
+    {
+        <li class="nav-item text-center">@Html.ActionLink("Gestion des avis", "Index", "Commentaire")</li>
+    }
+
+</ul>
+
+

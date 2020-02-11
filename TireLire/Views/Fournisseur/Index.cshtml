@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TireLire.Models.Fournisseur>
+
+@{
+    ViewBag.Title = "List.Fournisseur";
+}
+
+
+<h2>Annuaire des fournisseurs</h2>
+
+<p>
+    @Html.ActionLink("Ajouter un fournisseur", "Create", "", new { style = "color:darkgreen;", @class="text-decoration-none"})
+</p>
+<input class="form-control" id="myInput" type="text" placeholder="Search..">
+<br />
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Statut)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Statut)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editer", "Edit", new { id = item.IdFournisseur }, new {@class="text-decoration-none"}) |
+                        @Html.ActionLink("Details", "Details", new { id = item.IdFournisseur }, new {@class="text-decoration-none"}) |
+                        @Html.ActionLink("Supprimer", "Delete", new { id = item.IdFournisseur }, new {@class="text-decoration-none"})
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+<div>
+    @Html.ActionLink("Vers les produits", "Index", "Produit", "Produit", new { style = "color:darkgreen;", @class="text-decoration-none"}) |
+    @Html.ActionLink("Vers les catégories", "Index", "Categorie", "Categorie", new { style = "color:darkgreen;", @class="text-decoration-none"}) |
+    @Html.ActionLink("Vers la galerie", "Galerie", "Produit", "Produit", new { style = "color:darkgreen;", @class="text-decoration-none"})
+
+</div>
+
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>

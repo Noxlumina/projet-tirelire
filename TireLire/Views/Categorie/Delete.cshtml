@@ -1,0 +1,51 @@
+﻿@model TireLire.Models.Catégorie
+
+@{
+    ViewBag.Title = "Suppr.Catégorie";
+}
+
+
+<h3>Supression de la catégorie</h3>
+
+<div>
+    <h4>Voulez-vous vraiment supprimer cette catégorie?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_Catégorie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom_Catégorie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-outline-danger" />
+        </div>
+        <div>
+            <br />
+            @Html.ActionLink("Retour au listing des catégories", "Index", "", new { style = "color:darkgreen;", @class="text-decoration-none"})
+        </div>
+    }

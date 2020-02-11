@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Tiràgogo</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/popper")
+
+
+
+
+</head>
+<body style="@Html.Action("GetBackground", "Home")">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-inverse fixed-top ">
+            <div class="container">
+                <div class="navbar-header">
+
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <div class="container">
+                            @Html.ActionLink("Tiràgogo", "Index", "", "Home", new { area = "", @class = "text-decoration-none" })
+                            <img src="~/Content/images/icon.png" class="img-center" id="piggy" style="height:50px;width:50px;" data-toggle="collapse" data-target="#demo" />
+
+                        </div>
+                    </a>
+                </div>
+                <div div class="collapse navbar-collapse" id="demo">
+                    @Html.Action("Menu", "Navigation")
+                </div>
+                @Html.Partial("_LoginPartial")
+
+            </div>
+        </nav>
+
+    </header>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>
+                &copy; <button type="button" class="btn btn-outline-info badge-pill" data-toggle="modal" data-target="#myModal2">
+                    Tiràgogo
+                </button> @DateTime.Now.Year
+            </p>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal2">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Tiràgogo</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            Projet de site web de fin de formation
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @RenderSection("scripts", required: false)
+   
+</body>
+</html>
